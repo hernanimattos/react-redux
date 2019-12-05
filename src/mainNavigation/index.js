@@ -6,7 +6,6 @@ import Details from '../components/Details';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 const MainNAvigation = props => {
-  console.log(props, 'in navigation');
   const { search: { 
     result,
     artist

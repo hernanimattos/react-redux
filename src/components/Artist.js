@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAlbumDetails } from '../store/actions'
 import {
   Col,
   Row,
@@ -12,6 +15,8 @@ import {
 } from 'reactstrap';
 
 const Artist = props => {
+  console.log(props.artists, 'Artist')
+
   return (
     <Row>
       <Col xs="12">
@@ -25,7 +30,15 @@ const Artist = props => {
           <CardBody>
             <CardTitle>Name</CardTitle>
             <CardSubtitle>Year</CardSubtitle>
-            <Button>Detalhes</Button>
+            <Link
+              onClick={props.getAlbumDetails('teste', 'nois')}
+              to={{
+                pathname: `/artist/nome/detalhes/hernani`,
+              }}
+            >
+              
+              Detalhes
+            </Link>
           </CardBody>
         </Card>
       </Col>
@@ -33,4 +46,17 @@ const Artist = props => {
   );
 };
 
-export default Artist;
+const mapStateToProps =  (state) => {
+  console.log(state, 'State Aertists')
+  return {
+    artists: state.artists,
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAlbumDetails: (album,nome) => dispatch(getAlbumDetails(album, nome))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Artist);

@@ -14,8 +14,7 @@ import { connect } from 'react-redux';
 import { searchArtist } from '../store/actions'
 
 const Search = props => {
-  console.log(props, 'propspppp')
-  const [search, setArtist] = useState({
+    const [search, setArtist] = useState({
     artist: null,
     result: false,
   });
@@ -27,7 +26,7 @@ const Search = props => {
       artist: search.artist,
     });
 
-    props.searchArtist(search.artist)
+   return props.searchArtist(search.artist)
   };
 
   return (
@@ -50,19 +49,19 @@ const Search = props => {
           </Form>
         </Col>
       </Row>
-      <MainNavigation search={search}/>
+      <MainNavigation search={search, props}/>
     </Container>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    artist: state.artist
+    artist: state.artist,
+    nome: 'hernani'
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  console.log(dispatch, 'dispath')
   return {
     searchArtist: artist => dispatch(searchArtist(artist))
   };

@@ -15,7 +15,6 @@ const artistReducer =(state = initialState, action) => {
       return {
         ...state,
         artists: action.artists,
-        artist: 'oi'
       };
     case SEARCH_DETAILS:
       return {

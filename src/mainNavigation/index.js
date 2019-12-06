@@ -1,5 +1,5 @@
 import React from 'react';
-// import Artist from './Artist';
+import { connect } from 'react-redux';
 import Artist from '../components/Artist';
 import Album from '../components/Album';
 import Details from '../components/Details';
@@ -10,7 +10,6 @@ const MainNAvigation = props => {
     result,
     artist
   } } = props;
-  
 
   return (
     <Router>
@@ -39,4 +38,11 @@ const MainNAvigation = props => {
   );
 };
 
-export default MainNAvigation;
+const matStateToProps = (state) => {
+  return {
+    artist: state.artist,
+    result: state.result
+  }
+}
+
+export default connect(matStateToProps, null)(MainNAvigation);

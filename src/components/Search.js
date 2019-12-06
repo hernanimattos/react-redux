@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { searchArtist } from '../store/actions'
 
 const Search = props => {
+  console.log(props)
     const [search, setArtist] = useState({
     artist: null,
     result: false,
@@ -26,7 +27,7 @@ const Search = props => {
       artist: search.artist,
     });
 
-   return props.searchArtist(search.artist)
+   return props.searchArtist(search)
   };
 
   return (
@@ -54,16 +55,16 @@ const Search = props => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     artist: state.artist,
-    nome: 'hernani'
+    result: state.result
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchArtist: artist => dispatch(searchArtist(artist))
+    searchArtist: search => dispatch(searchArtist(search))
   };
 };
 

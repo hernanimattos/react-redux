@@ -15,8 +15,6 @@ import {
 } from 'reactstrap';
 
 const Artist = props => {
-  console.log(props.artists, 'Artist')
-
   return (
     <Row>
       <Col xs="12">
@@ -31,7 +29,7 @@ const Artist = props => {
             <CardTitle>Name</CardTitle>
             <CardSubtitle>Year</CardSubtitle>
             <Link
-              onClick={props.getAlbumDetails('teste', 'nois')}
+              onClick={props.getAlbumDetails('lllll', 'nois')}
               to={{
                 pathname: `/artist/nome/detalhes/hernani`,
               }}
@@ -47,7 +45,6 @@ const Artist = props => {
 };
 
 const mapStateToProps =  (state) => {
-  console.log(state, 'State Aertists')
   return {
     artists: state.artists,
   }

@@ -1,13 +1,12 @@
-import React, { useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getAlbumDetails } from '../store/actions'
+import { searchAlbum } from '../store/actions';
 import {
   Col,
   Row,
   Card,
   CardImg,
-  CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
@@ -15,44 +14,50 @@ import {
 } from 'reactstrap';
 
 const Artist = props => {
+  console.log(props, 'Artist= > Props');
+  const history = useHistory()
+
+  const searchForDetails = () => {
+    const { artist, searchAlbum } = props;
+    history.push(`/detalhes/${artist}`)
+    searchAlbum(artist);
+  }
   return (
     <Row>
-      <Col xs="12">
-        <Card>
-          <CardImg
-            top
-            width="100%"
-            src="/assets/318x180.svg"
-            alt="Card image cap"
-          />
-          <CardBody>
-            <CardTitle>Name</CardTitle>
-            <CardSubtitle>Year</CardSubtitle>
-            <Link
-              onClick={props.getAlbumDetails('lllll', 'nois')}
-              to={{
-                pathname: `/artist/nome/detalhes/hernani`,
-              }}
-            >
-              
-              Detalhes
-            </Link>
-          </CardBody>
-        </Card>
-      </Col>
+      {props.artists &&
+        props.artists.map(artist => {
+          return (
+            <Col xs="12" key={artist.idArtist}>
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src={artist.strArtistBanner}
+                  alt={artist.strArtist}
+                />
+                <CardBody>
+                  <CardTitle>{artist.strArtist}</CardTitle>
+                  <CardSubtitle>Genre{artist.strGenre}</CardSubtitle>
+                  <Button onClick={searchForDetails}>Albuns</Button>
+                </CardBody>
+              </Card>
+            </Col>
+          );
+        })}
     </Row>
   );
 };
 
-const mapStateToProps =  (state) => {
+const mapStateToProps = state => {
   return {
     artists: state.artists,
-  }
+    artist: state.artist
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAlbumDetails: (album,nome) => dispatch(getAlbumDetails(album, nome))
+    searchAlbum: artist => dispatch(searchAlbum(artist)),
   };
 };
 

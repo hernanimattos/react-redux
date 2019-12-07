@@ -1,27 +1,26 @@
-import { SEARCH_ARTIST, SEARCH_DETAILS } from './actions';
-
+import { SEARCH_ARTIST, SEARCH_ALBUM } from './actions';
 
 export const initialState = {
   artist: null,
-  album: 'valor inicio',
+  album: [],
   artists: [],
   details: {},
 };
 
-
-const artistReducer =(state = initialState, action) => {
+const artistReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_ARTIST:
       return {
         ...state,
         artist: action.artist,
         artists: action.artists,
-        result: action.result
+        result: action.result,
       };
-    case SEARCH_DETAILS:
+    case SEARCH_ALBUM:
+      console.log(action, 'action')
       return {
-        artist: action.artist,
-        albumName: action.albumName,
+        album: action.album,
+        ...state,
       };
     default:
       return { ...state };

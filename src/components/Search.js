@@ -50,7 +50,7 @@ const Search = props => {
           </Form>
         </Col>
       </Row>
-      <MainNavigation search={search, props}/>
+      <MainNavigation search={search}/>
     </Container>
   );
 };
@@ -58,7 +58,7 @@ const Search = props => {
 const mapStateToProps = state => {
   return {
     artist: state.artist,
-    result: state.result
+    result: state.result,
   };
 };
 

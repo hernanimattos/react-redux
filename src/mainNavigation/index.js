@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Artist from '../components/Artist';
+import Details from '../components/AlbumD';
 import Album from '../components/Album';
-import Details from '../components/Details';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 const MainNAvigation = props => {
@@ -18,10 +18,10 @@ const MainNAvigation = props => {
         render={props => <Artist {...props} />} />
       <Route 
         path={'/album/:search'} 
-        render={props => <Album {...props} />} />
+        render={props => <Details {...props} />} />
       <Route
-        path={'/detalhes/:album'}
-        render={props => <Details {...props} />}
+        path={'/albuns/:artist'}
+        render={props => <Album {...props} />}
       />
       {
          result && (<Redirect

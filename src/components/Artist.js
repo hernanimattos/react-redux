@@ -14,12 +14,11 @@ import {
 } from 'reactstrap';
 
 const Artist = props => {
-  console.log(props, 'Artist= > Props');
   const history = useHistory()
 
   const searchForDetails = () => {
     const { artist, searchAlbum } = props;
-    history.push(`/detalhes/${artist}`)
+    history.push(`/albuns/${artist}`)
     searchAlbum(artist);
   }
   return (
@@ -51,7 +50,7 @@ const Artist = props => {
 const mapStateToProps = state => {
   return {
     artists: state.artists,
-    artist: state.artist
+    artist: state.artist,
   };
 };
 

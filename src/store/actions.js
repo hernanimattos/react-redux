@@ -21,9 +21,10 @@ export const searchAlbum = artist => {
   return dispatch => {
     return getAlbums(artist).then(({ data }) => {
        const { album } = data;
+       console.log(album, '[album]')
       dispatch({
         type: SEARCH_ALBUM,
-        album
+        album,
       });
     });
   };

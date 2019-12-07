@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 import { searchArtist } from '../store/actions'
 
 const Search = props => {
-  console.log(props)
     const [search, setArtist] = useState({
     artist: null,
     result: false,

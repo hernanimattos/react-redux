@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { connect } from 'react-redux';
-import { Col, Row } from 'reactstrap';
+import { Col, Row, Button } from 'reactstrap';
+import { getAlbumDetails } from '../store/actions';
 
 const Album = (props) => {
-  console.log(props, 'propsAlbum')
+
+  const searchForDetails = ({ idAlbum }) => {
+    const { getAlbumDetails } = props;
+    getAlbumDetails(idAlbum);
+  };
   return (
     <Row>
       {
@@ -16,13 +21,12 @@ const Album = (props) => {
                 <img src={alb.strAlbumThumb} width="100%" />
                 <p>Integrantes</p>
                 <p>Componsitor</p>
-                <div>Detalhes</div>
+                <Button onClick={() => searchForDetails(alb)}>Detalhes</Button>
               </article>
             </Col>
           );
         })
       }
-      
     </Row>
   );
 };
@@ -30,8 +34,15 @@ const Album = (props) => {
 const mapStateToProps = state => {
   console.log(state, 'State Album')
   return {
-    album: state.album
+    album: state.album,
+    artist: state.artist
   }
 }
 
-export default connect(mapStateToProps, null)(Album);
+const mapDispachToProps = dispatch => {
+  return {
+    getAlbumDetails: idAlbum => dispatch(getAlbumDetails(idAlbum)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispachToProps)(Album);

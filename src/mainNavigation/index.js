@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Artist from '../components/Artist';
-import Details from '../components/AlbumD';
+import Details from '../components/Details';
 import Album from '../components/Album';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 

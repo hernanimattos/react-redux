@@ -17,6 +17,7 @@ const artistReducer = (state = initialState, action) => {
         result: action.result,
       };
     case SEARCH_ALBUM:
+      console.log(action, 'SEARCH_ALBUM');
       return {
         ...state,
         album: action.album

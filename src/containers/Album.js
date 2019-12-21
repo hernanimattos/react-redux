@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 
-
-
-
 const Album = (props) => {
   console.log(props, 'propsAlbum')
 
@@ -30,7 +27,8 @@ const Album = (props) => {
 const mapStateToProps = state => {
   console.log(state, 'State Album')
   return {
-    album: state.album
+    album: state.album,
+    artist: state.artist
   }
 }
 

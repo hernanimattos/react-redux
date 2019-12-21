@@ -1,4 +1,4 @@
-import { getArtist, getAlbums } from '../services';
+import { getArtist, getAlbums, getAlbumFromArtist } from '../services';
 export const SEARCH_ARTIST = 'SEARCH_ARTIST';
 export const SEARCH_DETAILS = 'SEARCH_DETAILS';
 export const SEARCH_ALBUM = 'SEARCH_ALBUM';
@@ -17,7 +17,7 @@ export const searchArtist = ({ artist, result }) => {
   };
 };
 
-export const searchAlbum = artist => {
+export const searchAlbuns = artist => {
   return dispatch => {
     return getAlbums(artist).then(({ data }) => {
        const { album } = data;
@@ -32,10 +32,19 @@ export const searchAlbum = artist => {
 
 export const getAlbumDetails = (artist, albumName) => {
   return dispatch => {
-    dispatch({
-      type: SEARCH_DETAILS,
-      artist,
-      albumName,
+    return getAlbumFromArtist(artist, albumName).then(({ data }) => {
+      console.log(data, 'aquiiii')
+      dispatch({
+        type: SEARCH_DETAILS,
+
+        })
     });
-  };
+  }
+  // return dispatch => {
+  //   dispatch({
+  //     type: SEARCH_DETAILS,
+  //     artist,
+  //     albumName,
+  //   });
+  // };
 };

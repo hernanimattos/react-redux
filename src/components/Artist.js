@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { searchAlbum } from '../store/actions';
+import { searchAlbuns } from '../store/actions';
 import {
   Col,
   Row,
@@ -16,11 +16,11 @@ import {
 const Artist = props => {
   const history = useHistory()
 
-  const searchForDetails = () => {
-    const { artist, searchAlbum } = props;
-    history.push(`/albuns/${artist}`)
-    searchAlbum(artist);
-  }
+  const searchForAlbuns = () => {
+    const { artist, searchAlbuns } = props;
+    history.push(`/albuns/${artist}`);
+    searchAlbuns(artist);
+  };
   return (
     <Row>
       {props.artists &&
@@ -37,7 +37,7 @@ const Artist = props => {
                 <CardBody>
                   <CardTitle>{artist.strArtist}</CardTitle>
                   <CardSubtitle>Genre{artist.strGenre}</CardSubtitle>
-                  <Button onClick={searchForDetails}>Albuns</Button>
+                  <Button onClick={searchForAlbuns}>Albuns</Button>
                 </CardBody>
               </Card>
             </Col>
@@ -56,7 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchAlbum: artist => dispatch(searchAlbum(artist)),
+    searchAlbuns: artist => dispatch(searchAlbuns(artist)),
   };
 };
 

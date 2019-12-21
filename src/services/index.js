@@ -8,7 +8,7 @@ const getAlbums = async artist =>
     `https://theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artist}`
   );
 
-const getAlbumFromArtist = async (artist,albumName) =>
-  await HTTP.get(`https://theaudiodb.com/api/v1/json/1/search.php?s=${artist}&${albumName}`);
+const getAlbumFromArtist = async albumid =>
+  await HTTP.get(`https://theaudiodb.com/api/v1/json/1/album.php?m=${albumid}`);
 
 export { getArtist, getAlbums, getAlbumFromArtist };

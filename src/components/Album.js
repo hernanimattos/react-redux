@@ -1,13 +1,18 @@
 import React, { useState} from 'react';
 import { connect } from 'react-redux';
 import { Col, Row, Button } from 'reactstrap';
-import { getAlbumDetails } from '../store/actions';
+import { getAlbumDetailsFromArtist } from '../store/actions';
+import { useHistory } from 'react-router-dom';
 
 const Album = (props) => {
+  const history = useHistory()
 
-  const searchForDetails = ({ idAlbum }) => {
-    const { getAlbumDetails } = props;
-    getAlbumDetails(idAlbum);
+  const searchForDetails = (album) => {
+    const { strArtist, strAlbum } = album
+    const { getAlbumDetailsFromArtist } = props;
+    
+    getAlbumDetailsFromArtist(strArtist, strAlbum );
+    history.push(`/album/${strAlbum}`);
   };
   return (
     <Row>
@@ -32,16 +37,15 @@ const Album = (props) => {
 };
 
 const mapStateToProps = state => {
-  console.log(state, 'State Album')
   return {
     album: state.album,
-    artist: state.artist
+    ...state
   }
 }
 
 const mapDispachToProps = dispatch => {
   return {
-    getAlbumDetails: idAlbum => dispatch(getAlbumDetails(idAlbum)),
+    getAlbumDetailsFromArtist: (strArtist, strAlbum) => dispatch(getAlbumDetailsFromArtist(strArtist, strAlbum)),
   };
 }
 
